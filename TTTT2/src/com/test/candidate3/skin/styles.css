@@ -1,0 +1,18 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace agenda "es.jln.promocion.views.agenda.*";
+
+@font-face { 
+	src: url("com/test/candidate3/skin/fonts/RotisSansSerifStd.otf"); 
+	fontFamily: 'Rotis';
+	embedAsCFF: true;
+}
+
+.textinput {
+	color:		#000000;
+	fontFamily:	'Rotis';
+	fontSize:	50;
+	borderVisible: false;
+	skinClass:	ClassReference("com.test.candidate3.skin.skinClasses.CustomTextInputSkin");
+}
+

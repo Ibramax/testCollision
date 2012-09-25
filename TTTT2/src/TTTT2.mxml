@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" width="1000" height="720" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" showStatusBar="false"
+					   xmlns:mx="library://ns.adobe.com/flex/mx" applicationComplete="application1_applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.greensock.TweenLite;
+			import com.test.candidate3.components.CustomTextInput;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.core.SpriteVisualElement;
+			private var rect:SpriteVisualElement;
+			private var input:CustomTextInput;
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void {
+				showTextInput();
+				initializeElem();
+				focusManager.setFocus(input);
+				trace("fda f");
+			}
+			
+			private function showTextInput():void {
+				input = new CustomTextInput();
+				input.addEventListener(FlexEvent.ENTER, enterHandler);
+				input.styleName = "textinput";
+				input.verticalCenter = 0;
+				input.horizontalCenter = 0;
+				this.addElement(input);
+			}
+			
+			private function enterHandler(event:FlexEvent):void {
+				trace("enter pressed");
+			}
+			
+			private function initializeElem():void {
+				rect = new SpriteVisualElement();
+				rect.x = 100;
+				rect.y = 20;
+				rect.graphics.lineStyle(1);
+				rect.graphics.beginFill(0x0000FF, 1);
+				rect.graphics.drawCircle(0, 0, 20);
+				
+				this.addElement(rect);
+				TweenLite.to(rect, 4, {x:200,onComplete:myFunction, width:10});
+			}
+			
+			private function myFunction():void {
+				TweenLite.to(rect, 2, {x:100, onComplete:myFunction2, width:20});
+			}
+			
+			private function myFunction2():void {
+				TweenLite.to(rect, 4, {x:200, onComplete:myFunction, width:17});
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Style source="com/test/candidate3/skin/styles.css" />
+</s:WindowedApplication>
